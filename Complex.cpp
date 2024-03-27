@@ -11,11 +11,14 @@ Complex::Complex(void)
     b = 0;
 };
 
-Complex::Complex(const Complex &c)
-{
+//=======================================================================
+// Copy Contructor
+// Nate Hydukovich
+//=======================================================================
+Complex::Complex (const Complex &c) {
     a = c.a;
     b = c.b;
-};
+}
 
 Complex::Complex(double x, double y)
 {
@@ -84,22 +87,6 @@ Complex Complex::operator- (const Complex &c) const {
 double Complex::abs (void) const {
     return(sqrt(a * a + b * b));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
