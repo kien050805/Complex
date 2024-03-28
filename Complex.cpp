@@ -1,3 +1,9 @@
+//=======================================================================
+// @file Complex.cpp
+// @author Kien Le T. , Nate Hydukovich, Andrew Nguyen, Bri Gonzalez
+// @brief Complex ADT
+// 2024-03-28
+//=======================================================================
 #include "Complex.h"
 #include <iostream>
 #include <cmath>
@@ -5,8 +11,8 @@
 using namespace std;
 
 //=======================================================================
-// Default Contructor
-// Kien Le T.
+// @brief Construct a new Complex:: Complex object;
+// @author Kien Le T.
 //=======================================================================
 Complex::Complex(void)
 {
@@ -15,28 +21,37 @@ Complex::Complex(void)
 };
 
 //=======================================================================
-// Copy Contructor
-// Nate Hydukovich
+// @brief Construct a new Complex:: Complex object;
+// @author Nate Hydukovich
+// @param c: Complex;
 //=======================================================================
-Complex::Complex (const Complex &c) {
+Complex::Complex(const Complex &c)
+{
     a = c.a;
     b = c.b;
-}
+};
 
-
+//=======================================================================
+// @brief Construct a new Complex:: Complex object;
+// @author Bri Gonzalez
+// @param x: double: real value;
+// @param y: double: imaginary value;
+//=======================================================================
 Complex::Complex(double x, double y)
 {
     a = x;
     b = y;
 };
 
-Complex::~Complex()
-{};
+//=======================================================================
+// @brief Destroy the Complex:: Complex object;
+//=======================================================================
+Complex::~Complex(){};
 
 //=======================================================================
-// setReal Mutator
-// Set real part of the complex number
-// Kien Le T.
+// @brief Mutator: set real part;
+// @author Kien Le T.
+// @param r: double;
 //=======================================================================
 void Complex::setReal(double r)
 {
@@ -44,261 +59,331 @@ void Complex::setReal(double r)
 };
 
 //=======================================================================
-// getReal Accessor
-// Accesses real part of the complex number
-// Nate Hydukovich
+// @brief Accessor: get real part;
+// @author Nate Hydukovich
+// @return double
 //=======================================================================
-double Complex::getReal() const {
+double Complex::getReal(void) const
+{
     return a;
-}
+};
 
 //=======================================================================
-// Operator Equal Too (==)
-// Returns distance of complex from the origin
-// Nate Hydukovich
+// @brief Mutator: set imaginary part;
+// @author Bri Gonzalez
+// @param r: double;
 //=======================================================================
-bool Complex::operator== (const Complex &c) const {
+void Complex::setImag(double r)
+{
+    b = r;
+};
+
+//=======================================================================
+// @brief Accessor: get imaginary part;
+// @author Kien Le T.
+// @return double
+//=======================================================================
+double Complex::getImag(void) const
+{
+    return b;
+};
+
+//=======================================================================
+// @brief Operator assign;
+// @author Kien Le T.
+// @param c: Complex;
+// @return Complex
+//=======================================================================
+Complex Complex::operator=(const Complex &c)
+{
+    a = c.a;
+    b = c.b;
+    return *this;
+};
+
+//=======================================================================
+// @brief Operator add;
+// @author Kien Le T.
+// @param c: Complex;
+// @return Complex
+//=======================================================================
+Complex Complex::operator+(const Complex &c) const
+{
+    return Complex(a + c.a, b + c.b);
+};
+
+//=======================================================================
+// @brief Operator add;
+// @author Nate Hydukovich
+// @param f: double;
+// @return Complex
+//=======================================================================
+Complex Complex::operator+(double f) const
+{
+    return Complex(a + f, b);
+};
+
+//=======================================================================
+// @brief Operator add;
+// @author Bri Gonzalez
+// @param i: int;
+// @return Complex
+//=======================================================================
+Complex Complex::operator+(int i) const
+{
+    return Complex(a + i, b);
+};
+
+//=======================================================================
+// @brief Operator subtract;
+// @author Nate Hydukovich
+// @param c: Complex;
+// @return Complex
+//=======================================================================
+Complex Complex::operator-(const Complex &c) const
+{
+    return Complex(a - c.a, b - c.b);
+};
+
+//=======================================================================
+// @brief Operator subtract;
+// @author Kien Le T.
+// @param f: double;
+// @return Complex
+//=======================================================================
+Complex Complex::operator-(double f) const
+{
+    return Complex(a - f, b);
+};
+
+//=======================================================================
+// @brief Operator subtract;
+// @author Bri Gonzalez
+// @param i: int;
+// @return Complex
+//=======================================================================
+Complex Complex::operator-(int i) const
+{
+    return Complex(a - i, b);
+};
+
+//=======================================================================
+// @brief Operator multiply;
+// @author Nate Hydukovich
+// @param c: Complex;
+// @return Complex
+//=======================================================================
+Complex Complex::operator*(const Complex &c) const
+{
+    return Complex(a * c.a - b * c.b, a * c.b + b * c.a);
+};
+
+//=======================================================================
+// @brief Operator multiply;
+// @author Bri Gonzalez
+// @param f: double
+// @return Complex
+//=======================================================================
+Complex Complex::operator*(double f) const
+{
+    return Complex(f * a, f * b);
+};
+//=======================================================================
+// @brief Operator multiply;
+// @author Kien Le T.
+// @param i: int
+// @return Complex
+//=======================================================================
+Complex Complex::operator*(int i) const
+{
+    return Complex(i * a, i * b);
+};
+
+//=======================================================================
+// @brief Operator division
+// @author Andrew Nguyen
+// @param c: Complex
+// @return Complex
+//=======================================================================
+Complex Complex::operator/(const Complex &c) const
+{
+    return Complex((a * c.a + b * c.b) / (pow(c.a, 2) + pow(c.b, 2)), (b * c.a - a * c.b) / (pow(c.a, 2) + pow(c.b, 2)));
+};
+
+//=======================================================================
+// @brief Operator division
+// @author Andrew Nguyen
+// @param f: double
+// @return Complex
+//=======================================================================
+Complex Complex::operator/(double f) const
+{
+    return Complex(a / f, b / f);
+};
+
+//=======================================================================
+// @brief Operator division
+// @author Andrew Nguyen
+// @param i: int
+// @return Complex
+//=======================================================================
+Complex Complex::operator/(int i) const
+{
+    return Complex(a / i, b / i);
+};
+
+//=======================================================================
+// @brief Operator conjugate
+// @author Andrew Nguyen
+// @return Complex
+//=======================================================================
+Complex Complex::operator~(void) const
+{
+    return Complex(a, -b);
+};
+
+//=======================================================================
+// @brief Operator exponent
+// @author Andrew Nguyen
+// @param p: int
+// @return Complex
+//=======================================================================
+Complex Complex::operator^(int p) const
+{
+    return Complex(pow(pow(a * a + b * b, 0.5), p) * cos(p * atan(b / a)), pow(pow(a * a + b * b, 0.5), p) * sin(p * atan(b / a)));
+};
+
+//=======================================================================
+// @brief Operator absolute
+// @author Nate Hydukovich
+// @return double
+//=======================================================================
+double Complex::abs(void) const
+{
+    return pow(a * a + b * b, 0.5);
+};
+
+//=======================================================================
+// @brief Operator negation
+// @author Andrew Nguyen
+// @return Complex
+//=======================================================================
+Complex Complex::operator-(void) const
+{
+    return Complex(-a, -b);
+};
+
+//=======================================================================
+// @brief Operator equality
+// @author Nate Hydukovich
+// @param c: Complex
+// @return true
+// @return false
+//=======================================================================
+bool Complex::operator==(const Complex &c) const
+{
     return (a == c.a && b == c.b);
-}
+};
 
 //=======================================================================
-// Operator Add (+), with float
-// Nate Hydukovich
+// @brief Operator inequality
+// @author Bri Gonzalez
+// @param c: Complex
+// @return true
+// @return false
 //=======================================================================
-Complex Complex::operator+ (double f) const {
-    Complex retValue;
-    retValue.a = a + f;
-    retValue.b = b;
-    return retValue;
-}
-
-//=======================================================================
-// Operator Multiply (*), with complex
-// Nate Hydukovich
-//=======================================================================
-Complex Complex::operator* (const Complex &c) const {
-    Complex retValue;
-    retValue.a = a * c.a;
-    retValue.b = b * c.b;
-    return retValue;}
-
-//=======================================================================
-// Operator Subtract (-), with complex
-// Nate Hydukovich
-//=======================================================================
-Complex Complex::operator- (const Complex &c) const {
-    Complex retValue;
-    retValue.a = a - c.a;
-    retValue.b = b - c.b;
-    return retValue;
-}
-
-//=======================================================================
-// Absolute Value
-// Returns distance of complex from the origin
-// Nate Hydukovich
-//=======================================================================
-double Complex::abs (void) const {
-    return(sqrt(a * a + b * b));
-}
-
-//=======================================================================
-// operator/
-// Divide complex number by an integer
-// Andrew Nguyen
-//=======================================================================
-Complex	    Complex::operator/	( double f ) const
+bool Complex::operator!=(const Complex &c) const
 {
-	Complex ret;
-
-	ret.a = a/f;
-    ret.b = b/f;
-
-	return ret;
-}
+    return (a != c.a || b != c.b);
+};
 
 //=======================================================================
-// operator/
-// Divide complex number by another complex number
-// Andrew Nguyen
+// @brief cout << operator overload
+// @author Andrew Nguyen
+// @param os: ostream
+// @param c: Complex
+// @return ostream&
 //=======================================================================
-Complex	    Complex::operator/	( int i ) const
+ostream &operator<<(ostream &os, const Complex &c)
 {
-	Complex ret;
-
-	ret.a = a/i;
-    ret.b = b/i;
-
-	return ret;
-}
-
-//=======================================================================
-// operator^
-// Raise complex number by given exponent
-// Andrew Nguyen
-//=======================================================================
-Complex	    Complex::operator^	( int p ) const
-{
-	Complex ret = *this;
-
-    if (p > 0) {
-        for (int i =0; i < p; i++)
-	        ret = ret * *this;
-    }
-    else if (p < 0) {
-        for (int i =0; i < -1*p; i++)
-	        ret = ret / (*this);    
-    }
-    else if (p == 0)
-        return Complex(1,0);
-
-    return ret;
-}
-
-//=======================================================================
-// operator~
-// Return the conjugate of complex number.
-// Andrew Nguyen
-//=======================================================================
-Complex	    Complex::operator~	( void ) const
-{
-	Complex ret;
-    ret.a = a;
-    ret.b = -b;
-
-    return ret;
-}
-
-//=======================================================================
-// operator-
-// Return the negation of complex number.
-// Andrew Nguyen
-//=======================================================================
-Complex	    Complex::operator-	( void ) const
-{
-    Complex ret;
-    ret.a = -a;
-    ret.b = -b;
-
-    return ret;
-}
-
-//=======================================================================
-// cout << operator overload
-// Output the complex number.
-// Andrew Nguyen
-//=======================================================================
-ostream & operator<< ( ostream & os, const Complex &c )
-{
-    if (c.b == 0 && c.a != 0)
+    if (c.b == 0)
+    {
         os << c.a;
-    else if (c.a == 0 && c.b != 0)
+    }
+    else if (c.b == 1)
+    {
+        os << c.a << "+i";
+    }
+    else if (c.b == -1)
+    {
+        os << c.a << "-i";
+    }
+    else if (c.a == 0)
+    {
         os << c.b << "i";
-    else if (c.a == 0 && c.b == 0)
-        os << "0";
+    }
     else if (c.b < 0)
+    {
         os << c.a << c.b << "i";
+    }
     else
+    {
         os << c.a << "+" << c.b << "i";
-
+    };
     return os;
 };
 
 //=======================================================================
-// cin >> operator overload
-// Take the complex number as input.
-// Andrew Nguyen
+// @brief cin >> operator overload
+// @author Andrew Nguyen
+// @param is: istream
+// @param c: Complex
+// @return istream&
 //=======================================================================
-istream & operator>> ( istream & is, Complex &c )
+istream &operator>>(istream &is, Complex &c)
 {
     string s, real, imag;
     is >> s;
 
     size_t iPos = s.find('i');
     size_t pos = s.find_last_of("+-");
-    
-    if (iPos != string::npos) {
-        if (iPos != 0) {
-            if (pos != string::npos) {
+
+    if (iPos != string::npos)
+    {
+        if (iPos != 0)
+        {
+            if (pos != string::npos)
+            {
                 real = s.substr(0, pos);
-                imag = s.substr(pos, s.size()-pos-1);
-    
-                if (real.empty()) 
+                imag = s.substr(pos, s.size() - pos - 1);
+
+                if (real.empty())
                     real = '0';
-                
+
                 if (imag == "+")
                     imag = '1';
                 else if (imag == "-")
                     imag = "-1";
             }
-            else {
+            else
+            {
                 real = '0';
                 imag = s.substr(0, iPos);
             }
         }
-        else {
+        else
+        {
             real = '0';
             imag = '1';
         }
     }
-    else {
+    else
+    {
         real = s;
         imag = '0';
     }
     c.a = stof(real);
     c.b = stof(imag);
-     
+
     return is;
-}
-
-
-//=======================================================================
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
-//=======================================================================
-
-
-// Constructor with parameters (a, b)
-// Sets the real and imaginary parts of the complex number
-// Bri Gonzalez
-Complex::Complex(double x, double y) : a(x), b(y) {}
-
-// Setter for the imaginary part
-// Sets the imaginary part of the complex number
-// Bri Gonzalez
-void Complex::setImag(double r) {
-    b = r;
-}
-
-// Inequality operator (!=)
-// Checks if two complex numbers are not equal
-// Bri Gonzalez
-bool Complex::operator!=(const Complex &c) const {
-    return (a != c.a || b != c.b);
-}
-
-// Addition operator with int (+)
-// Adds an integer to the complex number
-// Bri Gonzalez
-Complex Complex::operator+(int i) const {
-    return Complex(a + i, b);
-}
-
-// Subtraction operator with int (-)
-// Subtracts an integer from the complex number
-// Bri Gonzalez
-Complex Complex::operator-(int i) const {
-    return Complex(a - i, b);
-}
-
-// Multiplication operator with float (*)
-// Multiplies the complex number by a floating point number
-// Bri Gonzalez
-Complex Complex::operator*(float f) const {
-    return Complex(a * f, b * f);
-}
-
-
-
-
+};
