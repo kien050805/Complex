@@ -205,10 +205,23 @@ Complex Complex::operator*(int i) const
 // @param c: Complex
 // @return Complex
 //=======================================================================
-Complex Complex::operator/(const Complex &c) const
+Complex	    Complex::operator^	( int p ) const
 {
-    return Complex((a * c.a + b * c.b) / (pow(c.a, 2) + pow(c.b, 2)), (b * c.a - a * c.b) / (pow(c.a, 2) + pow(c.b, 2)));
-};
+	Complex ret = *this;
+
+    if (p > 0) {
+        for (int i =0; i < p; i++)
+	        ret = ret * *this;
+    }
+    else if (p < 0) {
+        for (int i =0; i < -1*p; i++)
+	        ret = ret / (*this);    
+    }
+    else if (p == 0)
+        return Complex(1,0);
+
+    return ret;
+}
 
 //=======================================================================
 // @brief Operator division
