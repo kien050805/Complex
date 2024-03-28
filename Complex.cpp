@@ -2,9 +2,12 @@
 #include <iostream>
 #include <cmath>
 
-
 using namespace std;
 
+//=======================================================================
+// Default Contructor
+// Kien Le T.
+//=======================================================================
 Complex::Complex(void)
 {
     a = 0;
@@ -20,6 +23,7 @@ Complex::Complex (const Complex &c) {
     b = c.b;
 }
 
+
 Complex::Complex(double x, double y)
 {
     a = x;
@@ -28,6 +32,16 @@ Complex::Complex(double x, double y)
 
 Complex::~Complex()
 {};
+
+//=======================================================================
+// setReal Mutator
+// Set real part of the complex number
+// Kien Le T.
+//=======================================================================
+void Complex::setReal(double r)
+{
+    a = r;
+};
 
 //=======================================================================
 // getReal Accessor
