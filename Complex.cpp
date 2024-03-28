@@ -106,3 +106,56 @@ istream & operator>> ( istream & is, Complex &c )
 {
 
 };
+
+
+
+//=======================================================================
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//=======================================================================
+
+
+// Constructor with parameters (a, b)
+// Sets the real and imaginary parts of the complex number
+// Bri Gonzalez
+Complex::Complex(double x, double y) : a(x), b(y) {}
+
+// Setter for the imaginary part
+// Sets the imaginary part of the complex number
+// Bri Gonzalez
+void Complex::setImag(double r) {
+    b = r;
+}
+
+// Inequality operator (!=)
+// Checks if two complex numbers are not equal
+// Bri Gonzalez
+bool Complex::operator!=(const Complex &c) const {
+    return (a != c.a || b != c.b);
+}
+
+// Addition operator with int (+)
+// Adds an integer to the complex number
+// Bri Gonzalez
+Complex Complex::operator+(int i) const {
+    return Complex(a + i, b);
+}
+
+// Subtraction operator with int (-)
+// Subtracts an integer from the complex number
+// Bri Gonzalez
+Complex Complex::operator-(int i) const {
+    return Complex(a - i, b);
+}
+
+// Multiplication operator with float (*)
+// Multiplies the complex number by a floating point number
+// Bri Gonzalez
+Complex Complex::operator*(float f) const {
+    return Complex(a * f, b * f);
+}
+
+
+
+
