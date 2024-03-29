@@ -248,20 +248,22 @@ Complex Complex::operator~(void) const
 // @param p: int
 // @return Complex
 //=======================================================================
-Complex	    Complex::operator^	( int p ) const
+Complex Complex::operator^(int p) const
 {
-	Complex ret = *this;
+    Complex ret = *this;
 
-    if (p > 0) {
-        for (int i =0; i < p; i++)
-	        ret = ret * *this;
+    if (p > 0)
+    {
+        for (int i = 0; i < p - 1; i++)
+            ret = ret * *this;
     }
-    else if (p < 0) {
-        for (int i =0; i < -1*p; i++)
-	        ret = ret / (*this);    
+    else if (p < 0)
+    {
+        for (int i = 0; i < -1 * (p - 1); i++)
+            ret = ret / (*this);
     }
     else if (p == 0)
-        return Complex(1,0);
+        return Complex(1, 0);
 
     return ret;
 }
